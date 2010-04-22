@@ -298,10 +298,12 @@ SC.VideoView = SC.View.extend({
     @return {void}
   */
   valueDidChange: function() {
+    var vo = this._getVideoObject();
     if(this.loaded==="html5"){
-      var v = this.get('value'),
-          elem = this.$('video');
+      var v = this.get('value'), elem = this.$('video');
       elem.attr('src', v);
+    } else if(this.loaded==="quicktime"){
+      if (vo) vo.src = this.get('value');
     }
   }.observes('value'),
   
