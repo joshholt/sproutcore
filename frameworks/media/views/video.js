@@ -290,6 +290,21 @@ SC.VideoView = SC.View.extend({
     }
   }.observes('frame'),
   
+  /**
+    This function is called everytime the value (video URL) changes.
+    this is done to play the proper video. currently only applies to HTML5
+    video tag.
+    
+    @return {void}
+  */
+  valueDidChange: function() {
+    if(this.loaded==="html5"){
+      var v = this.get('value'),
+          elem = this.$('video');
+      elem.attr('src', v);
+    }
+  }.observes('value'),
+  
   /** 
     In didCreateLayer we add DOM events for video tag or quicktime.
     
